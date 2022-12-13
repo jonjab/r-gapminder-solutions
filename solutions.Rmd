@@ -91,6 +91,40 @@ rm(list = ls())
 ```
 
 
+# Episode 2: Project Organization
+We need to invoke some libraries to get work done, including
+saving our output to PDF (this knitr part is not in the lesson yet)
+
+```{r}
+library(tinytex)
+```
+
+Now would be a great time to save you work.
+
+# Episode 3: Getting help
+
+And we will cover several other functions, like `c()` and `paste()`
+
+```{r}
+# both of these pull up a help card
+?ls()
+help(ls)
+
+```
+
+Vignettes are another sort of help.
+Running it empty give you a list of everything available
+```{r}
+vignette()
+```
+And a double question mark will give you a fuzzy list of help
+```{r}
+?? ggp
+```
+
+
+
+
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
