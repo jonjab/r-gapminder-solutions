@@ -1,0 +1,98 @@
+---
+title: "GapMinder Solutions Start"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+
+
+# Episode 1
+
+```{r}
+# evaluating simple math
+1 + 100
+```
+
+```{r}
+# order of operations
+3 + 5 * 2
+```
+
+## Let's make some formatting
+And start adding some text here. That's the advantage of using a notebook,
+I get to put formatted commentary in along the way.
+
+```{r}
+getwd()
+```
+## More complex
+* functions evaluate stuff in the parens
+* we can do comparisons
+* can execute a line at a time, or the entire box.
+```{r}
+exp(0.5)
+1 != 2
+1 == 1
+```
+
+## Variables
+Let's always use the assignment operator like this:
+` x <- 1:5 `
+so that we don't get confused with equals signs. = ==
+
+```{r}
+x <- 1:5
+```
+
+`ls()` gives you all your defined values:
+```{r}
+ls()
+```
+And a more verbose version that shows hidden files:
+```{r}
+ls(all.names=TRUE)
+```
+
+### note:
+putting in the name of an object outputs the object.
+```{r}
+x
+ls
+```
+
+### keep yourself clean
+the `rm()` function gives you the same 
+results as hitting the broom in RStudio
+as long as you pass it the list of functions.
+
+This is a nice example of a 'nested' function call.
+```{r}
+rm(list = ls())
+```
+
+## Challenge 2 & 3
+```{r}
+mass <- 47.5
+age <- 122
+mass <- mass * 2.3
+age <- age - 20
+
+mass > age
+
+
+```
+
+## challenge 5: clean up
+```{r}
+rm(list = ls())
+```
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
