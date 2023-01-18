@@ -11,6 +11,11 @@ gapminder <- read.csv("data/gapminder_data.csv",
 # sneak peak at the data
 str(gapminder)
 
+# some quick summary stats for each column
+# not useful for everything
+summary(gapminder)
+
+
 unique(gapminder$country)
 unique(gapminder$year)
 unique(gapminder$continent)
@@ -18,20 +23,19 @@ unique(gapminder$continent)
 # min and max values
 range(gapminder$lifeExp)
 
-#yikes, look at the lowest life exp. 23!
-
+# yikes, look at the lowest life exp. 23!
+# let's save that number as a variable
 lowest_life <- min(gapminder$lifeExp)
 lowest_life
 
-# how can I get the whole row?
+# get the whole row where life expectancy is lowest
 gapminder[(gapminder$lifeExp == lowest_life) ,]
 
-# get all the Rwandas
+# We see all the Rwandas. 
+# display all the Rwanda rows
 gapminder[(gapminder$country == "Rwanda") ,]
 
 
-# not useful for everything.
-summary(gapminder)
 
 
 # ep 5 add on
