@@ -1,14 +1,21 @@
-# fooling around with gapminds
+# fooling around with gapminder
+# can be used in episode 2 as a gapminder orientation
+
+# our main (set of) libraries for the workshop:
 library(tidyverse)
 
+# the csv came along with the project repo for our convenience
 gapminder <- read.csv("data/gapminder_data.csv", 
-                           stringsAsFactors = TRUE)
+                      stringsAsFactors = TRUE)
 
+# sneak peak at the data
 str(gapminder)
 
 unique(gapminder$country)
 unique(gapminder$year)
+unique(gapminder$continent)
 
+# min and max values
 range(gapminder$lifeExp)
 
 #yikes, look at the lowest life exp. 23!
@@ -20,17 +27,12 @@ lowest_life
 gapminder[(gapminder$lifeExp == lowest_life) ,]
 
 # get all the Rwandas
+gapminder[(gapminder$country == "Rwanda") ,]
+
 
 # not useful for everything.
 summary(gapminder)
 
-# episode 4 explorations
-# a: which columns are factors?
-# b: what are the values?
-str(gapminder)
-
-# a: only 1
-# b: there's 142 of them
 
 # ep 5 add on
 # add country GDP as a column with cbind
@@ -44,32 +46,21 @@ str(gapminder)
 
 
 # ep 8: ggplot.  GRAPHS!!!!
-# ep 8 
 # made on my jupyterhub
 
-library(tidyverse)
-
-gapminder <- read.csv("data/gapminder_data.csv", stringsAsFactors = TRUE)
-
-
-library("ggplot2")
-ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
-  geom_point()
-
+# basic scatterplot
 # this is just the grid
 # needs a geom
-ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
+ggplot(data = gapminder, 
+       mapping = aes(x = gdpPercap, y = lifeExp))
 
-
-ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+ggplot(data = gapminder, 
+       mapping = aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
 
-
-# challenge 1
 ggplot(data = gapminder, 
        mapping = aes(x = year, y = lifeExp)) + geom_point()
 
-# challenge 2
 ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, color=continent)) +
   geom_point()
 
