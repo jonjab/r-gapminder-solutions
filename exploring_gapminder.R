@@ -36,22 +36,24 @@ gapminder[(gapminder$lifeExp == lowest_life) ,]
 gapminder[(gapminder$country == "Rwanda") ,]
 
 
-
-
-# ep 5 add on
-# add country GDP as a column with cbind
+# add country GDP by multiplying two columns
+# together and binding the result
+# as a column with cbind
 
 countryGDP <- gapminder$pop * gapminder$gdpPercap
 # ground truth it. They seem reasonable
-range(countryGDP)
+hi_low_gdp <- range(countryGDP)
 
+# display that without the ^e
+format(hi_low_gdp, scientific = FALSE)
+
+# here's that cbing
 gapminder <- cbind(gapminder, countryGDP)
 str(gapminder)
 
 
-# ep 8: ggplot.  GRAPHS!!!!
-# made on my jupyterhub
-
+# GRAPHS!!!!
+# examples mostly from 8: ggplot.  
 # basic scatterplot
 # this is just the grid
 # needs a geom
@@ -70,12 +72,8 @@ ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, color=continent)) 
 
 
 # layers
-
-# this winds up weird
-ggplot(data = gapminder, 
-       mapping = aes(x=year, y=lifeExp, color=continent)) +
-  geom_line()
-
+# geoms get added one by one,
+# from the bottom up
 ggplot(data = gapminder, 
        mapping = aes(x=year, y=lifeExp, by=country, color=continent)) +
   geom_line()
@@ -88,24 +86,24 @@ ggplot(data = gapminder,
 # points on top of the lines stressed
 ggplot(data = gapminder, 
        mapping = aes(x=year, y=lifeExp, by=country)) +
-  geom_line(mapping = aes(color=continent)) + geom_point()
+       geom_line(mapping = aes(color=continent)) + 
+       geom_point()
 
-
-# do the tip here?
-
-# challenge 3
-# switch the order
+# points on bottom
 ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, by=country)) +
   geom_point() + 
   geom_line(mapping = aes(color=continent))
 
 
 # transformations and stats
+# you can do math without saving it
+
+# this looks like a log
 ggplot(data = gapminder, 
        mapping = aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
 
-# ^^ that looks like a log. let's try to straighten it
+# let's try to straighten it
 ggplot(data = gapminder, 
        mapping = aes(x = gdpPercap, y = lifeExp)) +
   geom_point(alpha = 0.5) + scale_x_log10()
