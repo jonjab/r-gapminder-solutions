@@ -47,10 +47,20 @@ hi_low_gdp <- range(countryGDP)
 # display that without the ^e
 format(hi_low_gdp, scientific = FALSE)
 
-# here's that cbing
+# here's that cbind
 gapminder <- cbind(gapminder, countryGDP)
 str(gapminder)
 
+# we can summarize and slice and dice our data 
+
+Amer_LifeExp_Current <- gapminder %>% 
+    select(continent, country, year, lifeExp) %>% 
+  filter(continent == "Americas", year == 2007) %>% 
+  select(country, lifeExp)
+  
+# does this pass the smell test?  
+# are there surprises?
+Amer_LifeExp_Current[order(Amer_LifeExp_Current$lifeExp),]
 
 # GRAPHS!!!!
 # examples mostly from 8: ggplot.  
