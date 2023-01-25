@@ -9,12 +9,15 @@ x
 
 # 3 ways to pull out values
 # like letters above
+# [] brackets act like a function meaning "get the nth element"
 x[1]
 x[4]
 
 # we can get multiples
+#, is like an and 
 x[c(1, 3)]
 
+#: operator creates a sequence of numbers from the left to the right
 x[1:4]
 
 1:4
