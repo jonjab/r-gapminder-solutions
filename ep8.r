@@ -20,10 +20,12 @@ ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
 
 
 # challenge 1
+# map year vs. life expectancy
 ggplot(data = gapminder, 
        mapping = aes(x = year, y = lifeExp)) + geom_point()
 
 # challenge 2
+# same s and y of challenge 1, plus color by continent
 ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, color=continent)) +
   geom_point()
 
@@ -31,23 +33,35 @@ ggplot(data = gapminder, mapping = aes(x = year, y = lifeExp, color=continent)) 
 # layers
 
 # this winds up weird
+# continent doesn't make sense here.
 ggplot(data = gapminder, 
        mapping = aes(x=year, y=lifeExp, color=continent)) +
   geom_line()
 
+# by = takes care of that
 ggplot(data = gapminder, 
        mapping = aes(x=year, y=lifeExp, by=country, color=continent)) +
   geom_line()
 
+# the weird one, R was guessing
+ggplot(data = gapminder, 
+       mapping = aes(x=year, y=lifeExp, by=continent, color=continent)) +
+  geom_line()
+
+# 2 geoms is totally allowed!
+# both geoms get the color from continent
 ggplot(data = gapminder, 
        mapping = aes(x=year, y=lifeExp, by=country, color=continent)) +
   geom_line() + 
   geom_point()
 
-# points on top of the lines stressed
+# the points really are on on top
+# this one stresses that
+# moving color to the geom_ lets you assign them seperately
 ggplot(data = gapminder, 
        mapping = aes(x=year, y=lifeExp, by=country)) +
-  geom_line(mapping = aes(color=continent)) + geom_point()
+  geom_line(mapping = aes(color=continent)) + 
+  geom_point(mapping = aes(color="blue"))
 
 
 # do the tip here?
