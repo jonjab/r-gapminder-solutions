@@ -107,12 +107,8 @@ x[names(x) !=c("a","c")]
 
 names(x) !=c("a","c")
 
-
-
-
 #Using %in%
 # If you want to match each element of the left argument with all of the elements of the right argument
-
 
 
 # challenge 3 - skip if low on time
@@ -135,3 +131,52 @@ countries
 
 #cleaner answer: 
 countries %in% seAsia
+
+#Handling special values: missing, infinite, undefined
+
+#is.na everything containing NA or NaN
+#is.nan and is.infinite will do the sam for NaN and Inf
+#is.finite will return everything that does not contain NA, NaN, or Inf
+#na.omit will filter out missing values 
+
+
+#Factor subsetting
+# works the same way as vector subsetting
+f <- factor(c("a", "a", "b", "c", "c", "d"))
+f[f == "a"]
+
+#List Subsetting
+#can't extract more than one element at once 
+xlist <- list(a = "Software Carpentry", b = 1:10, data = head(mtcars))
+xlist[1]
+
+#handy: use the $ sing to extract elements by name
+xlist$data
+
+#challenge 5 is eh
+#skip challenge 6
+
+
+#Dataframes 
+gapminder <- read.csv("data/gapminder_data.csv", stringsAsFactors = TRUE)
+head(gapminder[3])
+
+#to extract a single column use [[]]
+head(gapminder[["lifeExp"]])
+
+# $rule applies here too
+head(gapminder$year)
+
+# with two arguments [] works the same way for matrices
+gapminder[1:3,]
+
+#Challenge 7
+# 1. Extract observations collected for year 1957 
+# 2. Extract all columns except 1-4 
+# 3. Extact rows where life expectancy is longer than 80 years
+# 4. Extract the first row, and 4 and 5th columns 
+# Extra: how to extract rows that contain info for 2002 AND 2007?
+
+#skip challenge 8
+
+
