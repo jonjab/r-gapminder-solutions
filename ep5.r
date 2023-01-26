@@ -44,6 +44,8 @@ str(cats)
 cats$coat <- as.character((cats$coat))
 str(cats)
 
+
+# ###########################
 # challenge 1
 # Let’s imagine that 1 cat year is equivalent to 7 human years.
 
@@ -119,17 +121,28 @@ typeof(gapminder$country)
 # but display as text.
 gapminder$country
 
-# measure the size of it
+# measuring the size of a dataframe
 nrow(gapminder)
 ncol(gapminder)
 dim(gapminder)
 colnames(gapminder)
 
 
+# ###########################
 # Challenge 3
-# middle and end of your data
+# output the middle and end rows of your data
 
-# challenge 4
+tail(gapminder)
+
+# exact middle
+gm_middle_rows <- nrow(gapminder)/2
+gapminder[gm_middle_rows:(gm_middle_rows+5),]
+
+# also: there's sample()
+gapminder[sample(nrow(gapminder), 5),]
+
+
+# challenge 4: alternative
 # write a new script that downloads
 # gapminder from the internet
 # and creates a dataframe.
@@ -137,12 +150,21 @@ colnames(gapminder)
 # and save it to the root of your project folder.
 # Clean your environment and run your script
 
-# hint: the lesson script shows you how.
+# hint: the lesson script shows 2 different ways to do this.
 # we skipped it.
 
+# read without saving
+gapminder <-  read.csv("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder_data.csv", 
+                      stringsAsFactors = TRUE)
+
+# save then read
+download.file("https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder_data.csv", 
+              destfile = "data/gapminder_data_challenge.csv")
+gapminder <- read.csv("data/gapminder_data_challenge.csv", stringsAsFactors = TRUE)
 
 # challenge 5 is good if we are going into a break.
-
+# ask your neighbor if you don't understand some of this output
+str(gapminder)
 
 
 
