@@ -140,6 +140,7 @@ gdp_pop_bycontinents_byyear <- gapminder %>%
 # combining mutate with ifelse() facilitates filtering 
 
 # keeps all the data but filters after a certain condition
+# calc the gdp only for people with a life exp above 25
 gdp_pop_bycontinents_byyear_above25 <- gapminder %>%
   mutate(gdp_billion = ifelse(lifeExp > 25, gdpPercap * pop / 10^9, NA)) %>%
   group_by(continent, year) %>%
