@@ -25,6 +25,8 @@ str(cats)
 levels(cats$coat)
 levels(cats$coat) <- c(levels(cats$coat), "tortoiseshell")
 
+str(cats$coat)
+
 cats <- rbind(cats, newRow)
 cats
 

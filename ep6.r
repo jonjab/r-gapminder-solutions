@@ -1,7 +1,7 @@
 # Episode 6
 # Subsetting Data
 
-me from?
+# me from?
 x <- c(5.3, 6.2, 7.1, 4.8, 7.5)
 names(x) <- c(letters[1:5])
 
@@ -14,7 +14,7 @@ x[1]
 x[4]
 
 # we can get multiples
-#, is like an and 
+# by making a vector on the fly 
 x[c(1, 3)]
 
 #: operator creates a sequence of numbers from the left to the right
