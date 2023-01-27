@@ -113,4 +113,39 @@ gdp_bycontinents_byyear <- gapminder %>%
 
 
 # Using count() and n()
+gapminder %>%
+  filter(year == 2002) %>%
+  count(continent, sort = TRUE)
 
+# the n() will return the total number of observations in the 
+# current group rather than counting the number of observations
+gapminder %>%
+  group_by(continent) %>%
+  summarize(se_le = sd(lifeExp)/sqrt(n()))
+
+#Using Mutate
+# using mutate will create new variables 
+
+gdp_pop_bycontinents_byyear <- gapminder %>%
+  mutate(gdp_billion = gdpPercap*pop/10^9) %>%
+  group_by(continent,year) %>%
+  summarize(mean_gdpPercap = mean(gdpPercap),
+            sd_gdpPercap = sd(gdpPercap),
+            mean_pop = mean(pop),
+            sd_pop = sd(pop),
+            mean_gdp_billion = mean(gdp_billion),
+            sd_gdp_billion = sd(gdp_billion))
+
+#Using if else logical conditions 
+# combining mutate with ifelse() facilitates filtering 
+
+# keeps all the data but filters after a certain condition
+gdp_pop_bycontinents_byyear_above25 <- gapminder %>%
+  mutate(gdp_billion = ifelse(lifeExp > 25, gdpPercap * pop / 10^9, NA)) %>%
+  group_by(continent, year) %>%
+  summarize(mean_gdpPercap = mean(gdpPercap),
+            sd_gdpPercap = sd(gdpPercap),
+            mean_pop = mean(pop),
+            sd_pop = sd(pop),
+            mean_gdp_billion = mean(gdp_billion),
+            sd_gdp_billion = sd(gdp_billion))
