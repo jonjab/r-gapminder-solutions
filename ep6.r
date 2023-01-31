@@ -1,7 +1,9 @@
 # Episode 6
 # Subsetting Data
 
-#start with this vector. We will copy paste this throughout the lesson
+# start with a new toy vector. 
+# this time we assign names A,B,C,D,E to each value. (think column names)
+# We will copy paste this throughout the lesson
 x <- c(5.3, 6.2, 7.1, 4.8, 7.5)
 names(x) <- c(letters[1:5])
 print(x)
@@ -13,15 +15,17 @@ x[1]
 x[4]
 
 # we can get multiples
-#, is like an and 
+# comma (,) indicates item number in the vector
 x[c(1, 3)]
 
-#: operator creates a sequence of numbers from the left to the right
-x[1:4]
-
+# colon (:) operator creates a sequence of numbers 
+# from the left to the right
 1:4
 
-# arbitrarily bring them out over and over
+x[1:4]
+
+
+# you can bring values out over and over
 x[c(1,3,4,2,2,1)]
 
 # place zero is empty
@@ -37,12 +41,13 @@ x[-2]
 x[c(-1,-5)]
 x[-c(1,5)]
 
+# #####################################
 # challenge 1
 x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 names(x) <- c('a', 'b', 'c', 'd', 'e')
 print(x)
 
-# what are two wayts to get out b, c, and d?
+# what are two ways to get out b, c, and d?
 x[c(b,c,d)]
 x[2:4]
 x[letters[2:4]]
@@ -52,6 +57,11 @@ letters[2:4]
 
 # from the lesson:
 x[-c(1,5)]
+
+
+#######
+# this is about where we stopped on Day 2.
+# #########################
 
 #Subsetting by name 
 # We can extract values using names too
@@ -85,7 +95,7 @@ x[names(x) == "a"]
 f <- factor(c("a", "a", "b", "c", "c", "d"))
 f[f == "a"]
 
-#Dataframes 
+# Dataframes 
 gapminder <- read.csv("data/gapminder_data.csv", stringsAsFactors = TRUE)
 head(gapminder[3])
 
