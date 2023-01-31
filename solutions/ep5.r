@@ -2,9 +2,9 @@
 
 # re-read our cats csv into a dataframe if necessary:
 cats <- read.csv(file = "output_data/feline-data.csv", stringsAsFactors = TRUE)
+getwd()
 
-
-# Adding a column
+# Adding new columns to a dataframe
 
 # first make a vector for the column:
 age <- c(2,3,5)
@@ -19,6 +19,7 @@ cbind(cats, wrong_age)
 
 # a new row: rbind
 # give it a LIST
+
 newRow <- list("tortoiseshell", 3.3, TRUE, 9)
 cats <- rbind(cats, newRow)
 
