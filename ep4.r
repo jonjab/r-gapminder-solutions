@@ -186,3 +186,4 @@ typeof(row)
 dataTypes <- c('double', 'complex', 'integer', 'character', 'logical')
 dataStructures <- c('data.frame', 'vector', 'factor', 'list', 'matrix')
 answer <- list(dataTypes, dataStructures)
+

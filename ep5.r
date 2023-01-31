@@ -58,3 +58,4 @@ gapminder[gm_middle_rows:(gm_middle_rows+5),]
 gapminder[sample(nrow(gapminder), 5),]
 
 sample(nrow(gapminder), 5)
+
