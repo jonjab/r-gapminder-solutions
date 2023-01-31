@@ -28,3 +28,4 @@ gapminder[c(5:15),c(1,3,5)]
 # we can see the columns of our dataframes
 colnames(gapminder)
 
+gapminder[c(5:15),c(1,3,5)]
