@@ -1,12 +1,11 @@
 # ep 8 
-# made on my jupyterhub
+# 
 
 library(tidyverse)
 
 gapminder <- read.csv("data/gapminder_data.csv", stringsAsFactors = TRUE)
 
 
-library("ggplot2")
 ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
   geom_point()
 
@@ -177,7 +176,32 @@ ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp, color=contine
 
 
 # Multi-panel figures
+# facet_wrap
 
-# let's just do Americas
+# select the Americas
 americas <- gapminder[gapminder$continent == "Americas",]
 
+
+lifeExp_plot <- ggplot(data = americas, mapping = aes(x = year, y = lifeExp, color=continent)) +
+  geom_line() + facet_wrap( ~ country)
+
+lifeExp_plot
+
+
+# customize the labels
+lifeExp_plot <- ggplot(data = americas, mapping = aes(x = year, y = lifeExp, color=continent)) +
+  geom_line() + facet_wrap( ~ country) +
+  # change the labels
+  labs(
+    x = "Year",              # x axis title
+    y = "Life expectancy",   # y axis title
+    title = "Figure 1",      # main title of figure
+    color = "Continent"      # title of legend
+  ) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+lifeExp_plot
+
+
+# and can save the file
+ggsave(filename = "figs/lifeExp.png", plot = lifeExp_plot, width = 12, height = 10, dpi = 300, units = "cm")

@@ -5,7 +5,8 @@
 gapminder <- read.csv("data/gapminder_data.csv", stringsAsFactors = TRUE)
 
 
-# unique(gapminder$continent)
+unique(gapminder$continent)
+
 mean(gapminder[gapminder$continent == "Africa", "gdpPercap"])
 mean(gapminder[gapminder$continent == "Americas", "gdpPercap"])
 
@@ -19,38 +20,47 @@ library(dplyr)
 # dataframe, column, column, ...
 year_country_gdp <- select(gapminder, year, country, gdpPercap)
 year_country_gdp
-#dim(year_country_gdp)
 
-# if you want to eliminate 1 column, use minue on that column
+dim(year_country_gdp)
+
+# if you want to eliminate 1 column, use minus(-) on that column
 smaller_gapminder <- select(gapminder, -continent)
 str(smaller_gapminder)
 
-# We want to use this pipes syntax:
-# We can use multiple v
-year_country_gdp <- gapminder %>% select(year, country, gdpPercap)
+# Pipes syntax 
+# We start by sending our data down the pipe
+# no need for verb(x, ) when you use the pipe:
+year_country_gdp <- gapminder %>% 
+  select(year, country, gdpPercap)
+
 str(year_country_gdp)
 
 # we can rename columns on the fly with assignment operator = 
 # newname = oldname
 
-tidy_gdp <- year_country_gdp %>% rename(gdp_per_capita = gdpPercap)
+tidy_gdp <- year_country_gdp %>% 
+  rename(gdp_per_capita = gdpPercap)
+
 str(tidy_gdp)
 
-# We can use multiple dplyr verbs sequentialy with pipes
-# let's try FILTER
+
+# We can use multiple dplyr verbs sequentially with pipes
+# let's try FILTER then SELECT
 year_country_gdp_euro <- gapminder %>% 
   filter(continent == "Europe") %>% 
   select(year, country, gdpPercap)
 
 str(year_country_gdp_euro)
 
-# now it's easy to get specific values out
+
 # filter() is a boolean AND
 europe_lifeExp_2007 <- gapminder %>% 
   filter(continent == "Europe", year == 2007) %>% 
   select(country, lifeExp)
 
-# now I have a list of European life expectencies
+# now I have a list of European life expectancies
+# from 2007
+
 europe_lifeExp_2007
 
 # challenge 1
@@ -63,6 +73,7 @@ challenge1 <- gapminder %>%
   select(lifeExp, country, year) 
 
 dim(challenge1)
+
 
 # advanced: can you get the answer in one step?
 # to auto-output your results, put the entire statement
@@ -123,7 +134,7 @@ gapminder %>%
   group_by(continent) %>%
   summarize(se_le = sd(lifeExp)/sqrt(n()))
 
-#Using Mutate
+#U Mutate
 # using mutate will create new variables 
 
 gdp_pop_bycontinents_byyear <- gapminder %>%
@@ -136,7 +147,33 @@ gdp_pop_bycontinents_byyear <- gapminder %>%
             mean_gdp_billion = mean(gdp_billion),
             sd_gdp_billion = sd(gdp_billion))
 
-#Using if else logical conditions 
+
+# Challenge
+# from end of ep 9
+# Calculate the average life expectancy in 2002 
+# of 2 randomly selected countries for each continent. 
+# Then arrange the continent names in reverse order. 
+# HINT: use these funtions:
+#    arrange() 
+#    sample_n()
+#    filter()
+#    group_by()
+#    arrange 
+
+
+lifeExp_2countries_bycontinents <- gapminder %>%
+  filter(year==2002) %>%
+  group_by(continent) %>%
+  sample_n(2) %>%
+  summarize(mean_lifeExp=mean(lifeExp)) %>%
+  arrange(desc(mean_lifeExp))
+
+
+
+
+
+# SKIP
+# Using if else logical conditions 
 # combining mutate with ifelse() facilitates filtering 
 
 # keeps all the data but filters after a certain condition
